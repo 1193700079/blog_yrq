@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  thymeleaf: HTML
+#    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yrq_blog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+# Logger Config
+logging:
+  level:
+    root: info
+    com.yrq.blog: debug
+  file: log/blog-dev.log
+
+devtools:
+  restart:
+    enabled: true  #设置开启热部署
+    additional-paths: src/main/java #重启目录
+    exclude: WEB-INF/**
+  freemarker:
+    cache: false    #页面不加载缓存，修改即时生效
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: flag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)

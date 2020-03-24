@@ -1,0 +1,181 @@
+body{
+    /* background:url("../image/bg.png"); */
+    background:url("../image/background.jpg");
+    /* background:url("../image/bg5.jpg"); */
+    /* 图片适应窗口大小，这里设置的是不进行平铺 */
+    background-repeat:no-repeat;
+    /* 图片相对于浏览器固定,这里设置背景图片固定，不随内容滚动 */
+    background-attachment: fixed;
+      /* 从边框区域显示 */
+    background-origin: border-box;
+  /* 指定图片大小，此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小 */
+    background-size:cover;
+}
+
+
+.me-padded-mini{
+    padding: 0.2em !important;
+}
+.me-padded{
+    padding: 1em !important;
+}
+.me-padded-tb-mini{
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+.me-padded-tb-small{
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+.me-padded-tb{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+.me-padded-tb-large{
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+.me-padded-tb-big{
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+.me-padded-tb-huge{
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+.me-padded-tb-massive{
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+.me-padded-lr-responsive{
+    padding-right: 4em !important;
+    padding-left: 4em !important;
+}
+
+/* position */
+.me-top-right{
+    position:absolute;
+    top:0;
+    right:0;
+}
+.me-left-top{
+    position:absolute;
+    top:0;
+    left:0;
+}
+.me-top{
+    top: 0;
+}
+.me-fixed{
+    position: fixed !important;
+    z-index: 10 !important;
+}
+.me-right-buttom{
+    right: 0em !important;
+    bottom: 0em !important;
+}
+
+/* margin */
+.me-marrgin-tb-tiny{
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important ;
+}
+
+.me-marrgin-top-small{
+    margin-top: 0.5em !important;
+}
+
+.me-marrgin-top{
+    margin-top: 1em !important;
+}
+
+.me-marrgin-top-large{
+    margin-top: 2em !important;
+}
+.me-marrgin-bottom-mini{
+    margin-top: 0.5em !important;
+}
+
+
+
+
+/* text */
+.me-text{
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8 !important;
+}
+.m-text-thin{
+    font-weight: 300 !important;
+}
+
+.m-text-spaced{
+    letter-spacing: 1px !important;
+}
+.m-text-lined{
+    line-height: 1.8 !important;
+}
+
+
+/* container */
+.m-container{
+    max-width: 72em !important;
+    margin: auto !important;
+}
+.m-container-small{
+    max-width: 60em !important;
+    margin: auto !important;
+}
+
+/* 透明度 */
+.m-opacity-mini{
+    opacity: 0.8!important;
+}
+
+
+/* display */
+.me-inline-block{
+    display: inline-block !important;
+}
+
+/* png jpg .. */
+.me-photo{
+    display:table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* 个性化 */
+.me-border-hidden{
+    border: 0em !important;
+}
+/* 阴影效果 */
+.me-shadow-small{
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 移动端调整 */
+.me-mobile-show {
+    display: none !important;
+ }
+ 
+ @media screen and (max-width: 768px){
+     .me-mobile-hide {
+         display: none !important;
+     }
+     .me-mobile-show {
+         display: block !important;
+     }
+     .me-padded-lr-responsive {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+     }
+     .me-mobile-lr-clear {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+     }
+     .me-mobile-wide {
+         width: 100% !important;
+     }
+ }

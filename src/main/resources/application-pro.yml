@@ -1,0 +1,36 @@
+server:
+  port: 9090
+spring:
+  thymeleaf: HTML
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yrq_blog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+# Logger Config
+logging:
+  level:
+    root: warn
+    com.yrq.blog: info
+    file: log/blog-pro.log
+#mybatis-plus:
+#  # 如果是放在src/main/java目录下 classpath:/com/你的包名/*/mappers/*.xml
+#  # 如果放在 src/main/resources 下
+#  mapper-locations: classpath:/mappers/**/*.xml
+#  # 实体扫描，多个package用逗号或者分号分隔
+#  typeAliasesPackage: com.vp.example.*.entity
+#  global-config:
+#    db-config:
+#      # 主键类型
+#      id-type: auto
+#      #驼峰下划线转换
+#      table-underline: true
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#  configuration:
+#    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+#    map-underscore-to-camel-case: true
+#    cache-enabled: false
+#    #配置JdbcTypeForNull, oracle数据库必须配置
+#    jdbc-type-for-null: 'null'

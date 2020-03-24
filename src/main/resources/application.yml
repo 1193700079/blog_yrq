@@ -1,0 +1,8 @@
+spring:
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+
+  #  active: pro  #发布的环境
+
