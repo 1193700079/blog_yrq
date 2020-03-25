@@ -5,6 +5,7 @@ spring boot 2.2.5+ mybatis plus 3.3.0.tmp+ thymeleaf 全栈博客
 www.yrqblog.top
 
 使用了阿里云的t5服务器
+服务器为 Linux的Centos版本   
 单核2GB 40GB硬盘
 
 使用的技术有
@@ -16,3 +17,6 @@ JQuery
 前端使用vscode开发
 后端使用idea开发
 数据库使用Navicat mysql
+
+代码管理
+使用git+sourceTree
