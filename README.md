@@ -5,3 +5,4 @@ spring boot + mybatis plus + thymeleaf 全栈博客
 www.yrqblog.top
 
 使用了阿里云的t5服务器
+单核2GB 40GB硬盘
