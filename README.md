@@ -1,5 +1,5 @@
 # hello !!
-spring boot + mybatis plus + thymeleaf 全栈博客
+spring boot 2.2.5+ mybatis plus 3.3.0.tmp+ thymeleaf 全栈博客
 
 项目已经部署了可以访问
 www.yrqblog.top
@@ -11,3 +11,8 @@ www.yrqblog.top
 sematic UI
 看板娘
 JQuery
+
+然后项目管理使用了Maven
+前端使用vscode开发
+后端使用idea开发
+数据库使用Navicat mysql
