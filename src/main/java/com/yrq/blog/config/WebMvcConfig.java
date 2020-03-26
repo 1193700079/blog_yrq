@@ -21,12 +21,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
 //    拦截器
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginIntercepter())
-//                .addPathPatterns("/admin/**")
-//                .excludePathPatterns("/admin")
-//                .excludePathPatterns("/admin/login");
-//
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginIntercepter())
+                .addPathPatterns("/admin/**")
+                .excludePathPatterns("/admin")
+                .excludePathPatterns("/admin/login");
+
+    }
 }

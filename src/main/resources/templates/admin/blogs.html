@@ -16,7 +16,7 @@
         <div class="ui container">
             <div class="ui inverted secondary menu stackable">
                 <h2 class="ui teal header item">后台管理</h2>
-                <a href="#" th:href="@{/admin/blogs}" class=" ui blog dropdown active browse me-item item me-mobile-hide">
+                <a href="#" th:href="@{/admin/blogs}" class=" ui  active browse me-item item me-mobile-hide">
                     <i class="home icon"></i>
                     博客
                 </a>
@@ -59,24 +59,28 @@
         <!-- container可以自动响应布局 -->
         <div class="ui container">
             
-            <form action="#" method="post" class="ui form">
+            <div  class="ui form">
+                <input type="hidden" name="page" >
                 <div class="inline fields">
-                    <div class="inline field">
+                    <div class="field">
                         <input type="text" name="title" placeholder="标题">
                     </div>
-                    <div class="inline field">
+                    <div class="field">
                         <div class="ui selection dropdown">
-                            <input type="hidden" name="type">
+<!--                            一个隐藏框 方便传参数-->
+                            <input type="hidden" name="typeId">
                             <i class="dropdown icon"></i>
                             <div class="default text">分类</div>
                             <div class="menu">
-                                <div class="item" data-value="1">算法</div>
-                                <div class="item" data-value="2">SpringBoot</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">算法</div>
+                                <!--/*-->
+                                <div class="item" data-value="2">springboot</div>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
                     <!-- 推荐的复选框 -->
-                    <div class="inline field ">
+                    <div class="field ">
                         <div class="ui checkbox">
                             <input type="checkbox" name="recommend" id="recommend">
                             <!-- for 和 id 相关联 -->
@@ -88,58 +92,70 @@
                         </div>
                     </div>
                     <!-- 查询 -->
-                    <div class="inline field">
-                        <button class="ui teal  basic button"><i class="search icon"></i>搜索</button>
+                    <div class="field">
+                        <button  type="button" id="search-btn"  class="ui teal  basic button"><i class="search icon"></i>搜索</button>
                     </div>
                     
                 </div>
-            </form>
-
-            <table class="ui table ">
-                <thead>
+            </div>
+            <div id="table-container">
+                <table th:fragment="blogList" class="ui table ">
+                    <thead>
                     <tr>
                         <th></th>
                         <th>标题</th>
                         <th>类型</th>
                         <th>推荐</th>
+                        <th>状态</th>
                         <th>更新时间</th>
                         <th>操作</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>线段树详解</td>
-                        <td>数据结构</td>
-                        <td>是</td>
-                        <td>2020-03-22 10:58</td>
+                    </thead>
+                    <tbody>
+                    <tr th:each="blog,iterStat : ${page.getRecords()}">
+                        <td th:text="${iterStat.count}">1</td>
+                        <td th:text="${blog.title}">线段树详解</td>
+                        <td th:text="${blog.getTypeName()}">数据结构</td>
+                        <td th:text="${blog.recommend} ? '是':'否'">是</td>
+                        <td th:text="${blog.published} ? '发布':'草稿'">草稿</td>
+                        <td th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2020-03-22 10:58</td>
                         <td>
-                            <a href="" class="ui teal button">修改</a>
-                            <a href="" class="ui red button ">删除</a>
+                            <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui  teal  button">编辑</a>
+                            <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui  red  button">删除</a>
                         </td>
-
-                </tbody>
-                <tfoot>
+                    </tr>
+                    </tbody>
+                    <tfoot>
                     <tr>
                         <!-- colspan是合并单元格 -->
-                        <th colspan="6">
-                            <div class="ui  pagination menu">
-                                <a class="item">上一页</a>
-                                <a class="item">下一页</a>
+                        <th colspan="7">
+                            <div class="ui  pagination menu" th:if="${page.pages>1}">
+                                <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}-1" class="item" th:if="${page.hasPrevious()}">上一页</a>
+                                <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}+1" class=" item" th:if="${page.hasNext()}">下一页</a>
                             </div>
 
-                            <a href="" class="ui right floated teal button large">新增</a>
+                            <a href="" th:href="@{/admin/blogs/input}" class="ui right floated teal button large">新增</a>
 
                         </th>
                     </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+
+                <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                    <i class="close icon"></i>
+                    <div class="header">提示：</div>
+                    <p th:text="${message}">恭喜，操作成功！</p>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
     <!-- 底部栏 -->
-    <footer class="ui inverted vertical segment me-padded-tb-massive">
+
+    <footer th:fragment="footer" class="ui inverted vertical segment me-padded-tb-massive">
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
@@ -187,6 +203,8 @@
 
     <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>-->
+
     <script>
         $('.menu.toggle').click(function () {
             $('.me-item').toggleClass('me-mobile-hide');
@@ -195,9 +213,38 @@
         $('.ui.user.dropdown').dropdown({
             on: 'hover'
         });
-        $('.ui.blog.dropdown').dropdown({
+
+        $('.ui.selection.dropdown').dropdown({
             on: 'hover'
         });
+
+        //消息提示关闭初始化
+        $('.message .close')
+            .on('click', function () {
+                $(this)
+                    .closest('.message')
+                    .transition('fade');
+            });
+
+
+        function page(obj) {
+            $("[name='page']").val($(obj).data("page"));
+            loaddata();
+        }
+
+        $('#search-btn').on('click',function(){
+            $("[name='page']").val(0);
+                loaddata();
+        });
+
+        function loaddata() {
+            $("#table-container").load("/admin/blogs/search",{
+                title : $("[name='title']").val(),
+                typeId : $("[name='typeId']").val(),
+                recommend : $("[name='recommend']").prop('checked'),
+                page : $("[name='page']").val()
+            });
+        };
 
     </script>
 </body>

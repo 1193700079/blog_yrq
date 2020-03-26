@@ -30,24 +30,10 @@ public class AdminTagController {
     @GetMapping("/tags")
     public String tags(Model model,@RequestParam(value="page",required = false,defaultValue = "1") Integer page) {
 
-        model.addAttribute("page", tagService.pageTag(page,5));
+        model.addAttribute("page", tagService.pageTag(page,10));
         return "/admin/tags";
     }
 
-//    @GetMapping("/tags/{page}")
-//    public String tags(@PathVariable("page") Integer page ,Model model) {
-//        if(page == null){
-//            page = 1;
-//        }
-//        model.addAttribute("page", tagService.pageTag(page,5));
-//        return "/admin/tags";
-//    }
-//    @GetMapping("/tags")
-//    @ResponseBody
-//    public Page<Tag> tags(Model model) {
-//        model.addAttribute("page", tagService.pageTag(1,10));
-//        return tagService.pageTag(1,10);
-//    }
 
     @GetMapping("/tags/input")
     public String input(Model model) {

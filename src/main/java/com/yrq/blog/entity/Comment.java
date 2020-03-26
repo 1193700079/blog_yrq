@@ -20,10 +20,9 @@ import java.util.Date;
 public class Comment {
 
     private Long id;
-    private String nickname;
-    private String email;
     private String content;
-    private String avatar;
+    private Long blogId;
+    private Long userId;
     private Date createTime;
 
 }

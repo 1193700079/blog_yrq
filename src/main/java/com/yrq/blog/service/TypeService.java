@@ -74,4 +74,12 @@ public class TypeService implements ITypeService {
     public Type getType(Long id) {
         return  typeMapper.selectById(id);
     }
+    public Type getType(String id) {
+        Long i = Long.parseLong(id);
+        return  getType(i);
+    }
+
+    public List<Type> listType() {
+        return  typeMapper.selectList(null);
+    }
 }

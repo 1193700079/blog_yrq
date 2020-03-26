@@ -11,7 +11,9 @@ import com.yrq.blog.service.iservice.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: blog_yrq
@@ -69,5 +71,22 @@ public class TagService implements ITagService {
 
     public Tag getTag(Long id) {
         return  tagMapper.selectById(id);
+    }
+
+    public List<Tag> listTag() {
+        return tagMapper.selectList(null);
+    }
+
+    public List<Tag> listTag(String ids) {
+        List<Tag> result = new ArrayList<>();
+        if(ids!=null && ids!=""){
+            String[] s = ids.split(",");
+            for (int i = 0; i < s.length; i++) {
+                int id = Integer.parseInt(s[i]);
+                Tag tag = tagMapper.selectById(id);
+                result.add(tag);
+            }
+        }
+        return result;
     }
 }
