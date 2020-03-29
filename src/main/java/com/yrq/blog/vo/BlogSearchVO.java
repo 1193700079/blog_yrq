@@ -14,4 +14,5 @@ public class BlogSearchVO {
     private Long typeId;
     private boolean isRecommend;
     private Integer page;
+    private Integer blogSize;
 }

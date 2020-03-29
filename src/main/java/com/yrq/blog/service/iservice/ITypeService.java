@@ -29,4 +29,9 @@ public interface ITypeService{
 
     //删除
     void deleteType(Long id);
+
+    //显示最新的num个Type
+    List<Type> listTypeTop(int num);
+
+    int getTotalType();
 }

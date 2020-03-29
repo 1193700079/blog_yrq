@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,8 +37,6 @@ public class Blog {
     private boolean commentabled;
     private boolean published;
     private boolean recommend;
-
-    @TableLogic
     private Integer deleted;
     private Date createTime;
     private Date updateTime;
@@ -49,7 +48,8 @@ public class Blog {
     private User user;
 
     @TableField(exist = false)
-    private List<Tag> tags;
+    public List<Tag> tags;
+
 
     @TableField(exist = false)
     private String typeName;
@@ -58,8 +58,6 @@ public class Blog {
 
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
-        System.out.println(typeId);
-//        this.typeName = typeService.getType(typeId).getName();
     }
 
 
@@ -82,4 +80,6 @@ public class Blog {
             return tagIds;
         }
     }
+
+
 }

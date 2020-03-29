@@ -1,214 +1,97 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <!--移动端浏览 viewport移动端浏览   width表示可视区域 initial-scale首次浏览 无缩放-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head(~{::title})">
         <Title>博客首页</Title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-        <!-- 看板娘字体 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="../static/css/me.css">
     </head>
     <body>
         <!-- 导航 -->
-        <nav class="ui inverted attached segment me-padded-tb-mini">
-            <div class="ui container">
-                <div class="ui inverted secondary menu stackable">
-                    <h2 class="ui teal header item">Blog_Daniel</h2>
-                    <a href="#" class="active me-item item me-mobile-hide"><i class="home icon"></i>首页</a>
-                    <a href="#" class=" me-item item me-mobile-hide"><i class="idea icon"></i>分类</a>
-                    <a href="#" class=" me-item item me-mobile-hide"><i class="tags icon"></i>标签</a>
-                    <a href="#" class=" me-item item me-mobile-hide"><i class="clone icon"></i>归档</a>
-                    <a href="#" class=" me-item item me-mobile-hide"><i class="info icon"></i>关于我</a>
-                    <div class="right me-item  item me-mobile-hide">
-                        <div class="ui inverted transparent icon input">
-                            <input type="text" placeholder="Search...">
-                            <i class="search link icon"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <a href="#" class="ui menu toggle black button icon me-top-right me-mobile-show">
-                <i class="sidebar icon"></i>
-            </a>
-        </nav>
+        <nav th:replace="fragments::menu(1)"></nav>
 
         <!-- 中间内容 -->
         <div id="waypoint" class="me-padded-tb-large">
             <!-- container可以自动响应布局 -->
             <div class="ui container">
-                    <div class="ui stackable grid">
+                    <div class="ui middle aligned stackable grid">
                         <!-- 博客列表 -->
-                        <div class="eleven wide column">
-                             <!-- header -->
-                            <div class="ui top attached segment">
-                               
-                                <div class="ui two column grid middle aligned">
-                                    <div class="column">
-                                        <h3 class="ui header teal">博客</h3>
-                                    </div>
-                                    <div class="right aligned column">
-                                           共 <h3 class="ui header orange
-                                           me-inline-block">14</h3> 篇
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- content 每篇博客内容 -->
-                            <div class="ui attached   segment me-text ">
-                                <div class="ui padded   segment me-padded-tb-big">
-                                    <div class="ui mobile reversed  stackable grid">
-                                        <div class="eleven wide column">
-                                            <!-- 博客标题 -->
-                                            <h3 class="ui header">
-                                                华北理工杨瑞卿
-                                            </h3>
-                                            <!-- 博客内容 -->
-                                            <p>一个无敌帅的男人
-                                                    诗延绵千年而不绝，歌咏千年而不息，就是因为诗歌自身固有的魅力十足。五言绝句是中国传统诗歌体裁之一 ，全篇仅二十字，便能展现出一幅幅清新的画图，传达一种种真切的意境，可见诗之魅力。小编今天就是想要推荐几首五言绝句的诗篇，而五言绝句是一种五言四句而又合乎律诗规范的小诗 ，因小见大，以少总多， 展现出丰富的内容与深厚的意境，现在就让我们来看一下那些五言绝句的小诗吧。
-                                            </p>
-                                            <div class="ui grid">
-                                                <!-- 用户基本信息 -->
-                                                <div class="eleven wide column">
-                                                    <div class="ui mini horizontal link list">
-                                                        <div class="item">
-                                                            <img src="../static/image/1.png" alt="" class="ui avatar image">
-                                                            <div class="content">
-                                                                    <a href="#"><div class="header">杨瑞卿</div></a>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="item">
-                                                            <i class="calendar icon"></i> 2020-3-21 
-                                                        </div>
-                                                        <div class="item">
-                                                                <i class="eye icon"></i> 5223 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- 标签label -->
-                                                <div class="right aligned five wide column">
-                                                    <a href="#" target="_blank" class="ui basic teal label me-padded-mini">认知升级</a>
-                                                </div>
-                                            </div>
+                        <div id="table-container" th:fragment="blogList" class="eleven wide column">
+                            <input type="hidden" name="page">
+                                <!-- header -->
+                                <div class="ui top attached segment">
+
+                                    <div class="ui two column grid middle aligned">
+                                        <div class="column">
+                                            <h3 class="ui header teal">博客</h3>
                                         </div>
-                                        <!-- 文章图片 最好是800width 400height -->
-                                        <div class="five wide column">
-                                                <a href="" target="_blank">
-                                                        <img width="200" height="100" src="https://i.picsum.photos/id/961/300/200.jpg" alt="" class="ui rounded bordered fluid"
-                                                        style="max-width: 100%; height: auto">
-                                                </a>
+                                        <div class="right aligned column">
+                                            共 <h3 class="ui header orange
+                                           me-inline-block" th:text="${counts}">14</h3> 篇
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ui padded   segment me-padded-tb-big">
+                                <!-- content 每篇博客内容 -->
+                                <div class="ui attached   segment me-text ">
+                                    <div class="ui padded   segment me-padded-tb-big"  th:each="blog,iterStat : ${page.getRecords()}     " >
                                         <div class="ui mobile reversed  stackable grid">
-                                            <div class="eleven wide column">
+                                            <div class="eleven wide column" >
                                                 <!-- 博客标题 -->
-                                                <h3 class="ui header">
-                                                    华北理工杨瑞卿
+                                                <h3 class="ui header" >
+                                                    <a  href="#" th:href="@{/blog/{id}(id=${blog.id})}"    th:text="${blog.title} " STYLE="color: black" >
+                                                        博客标题
+                                                    </a>
                                                 </h3>
                                                 <!-- 博客内容 -->
-                                                <p>一个无敌帅的男人
-                                                        诗延绵千年而不绝，歌咏千年而不息，就是因为诗歌自身固有的魅力十足。五言绝句是中国传统诗歌体裁之一 ，全篇仅二十字，便能展现出一幅幅清新的画图，传达一种种真切的意境，可见诗之魅力。小编今天就是想要推荐几首五言绝句的诗篇，而五言绝句是一种五言四句而又合乎律诗规范的小诗 ，因小见大，以少总多， 展现出丰富的内容与深厚的意境，现在就让我们来看一下那些五言绝句的小诗吧。
-                                                </p>
+                                                <p  th:text="|${blog.description}......|">诗延绵千年而不绝，歌咏千年而不息，就是因为诗歌自身</p>
                                                 <div class="ui grid">
                                                     <!-- 用户基本信息 -->
                                                     <div class="eleven wide column">
                                                         <div class="ui mini horizontal link list">
                                                             <div class="item">
-                                                                <img src="../static/image/1.png" alt="" class="ui avatar image">
+                                                                <img src="../static/image/1.png" th:src="${blog.user.avatar}" alt="" class="ui avatar image">
                                                                 <div class="content">
-                                                                        <a href="#"><div class="header">杨瑞卿</div></a>
+                                                                    <a href="#"><div class="header" th:text="${blog.user.nickname}">杨瑞卿</div></a>
+<!--                                                                    <a href="#"><div class="header" >杨瑞卿</div></a>-->
                                                                 </div>
-                                                                
                                                             </div>
-                                                            <div class="item">
-                                                                <i class="calendar icon"></i> 2020-3-21 
+                                                            <div class="item" >
+                                                                <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2020-3-26</span>
                                                             </div>
-                                                            <div class="item">
-                                                                    <i class="eye icon"></i> 5223 
+                                                            <div class="item" >
+                                                                <i class="eye icon"></i> <span th:text="${blog.views}">9999</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- 标签label -->
-                                                    <div class="right aligned five wide column">
-                                                        <a href="#" target="_blank" class="ui basic teal label me-padded-mini">认知升级</a>
+                                                    <div class="right aligned five wide column" >
+                                                        <a href="#" class="ui basic teal label me-padded-mini" th:each=" tag:${blog.tags}">
+                                                            <span th:text="${tag.name}">方法论</span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- 文章图片 最好是800width 400height -->
                                             <div class="five wide column">
-                                                    <a href="" target="_blank">
-                                                            <img width="200" height="100" src="https://i.picsum.photos/id/961/300/200.jpg" alt="" class="ui rounded bordered fluid"
-                                                            style="max-width: 100%; height: auto">
-                                                    </a>
+                                                <a href="" th:href="@{/blog/{id}(id=${blog.id})}" >
+                                                    <img width="200" height="100" src="https://i.picsum.photos/id/961/300/200.jpg" alt="" class="ui rounded bordered fluid"
+                                                         th:src="@{${blog.firstPicture}}" style="max-width: 100%; height: auto">
+                                                </a>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="ui padded   segment me-padded-tb-big">
-                                            <div class="ui mobile reversed  stackable grid">
-                                                <div class="eleven wide column">
-                                                    <!-- 博客标题 -->
-                                                    <h3 class="ui header">
-                                                        华北理工杨瑞卿
-                                                    </h3>
-                                                    <!-- 博客内容 -->
-                                                    <p>一个无敌帅的男人
-                                                            诗延绵千年而不绝，歌咏千年而不息，就是因为诗歌自身固有的魅力十足。五言绝句是中国传统诗歌体裁之一 ，全篇仅二十字，便能展现出一幅幅清新的画图，传达一种种真切的意境，可见诗之魅力。小编今天就是想要推荐几首五言绝句的诗篇，而五言绝句是一种五言四句而又合乎律诗规范的小诗 ，因小见大，以少总多， 展现出丰富的内容与深厚的意境，现在就让我们来看一下那些五言绝句的小诗吧。
-                                                    </p>
-                                                    <div class="ui grid">
-                                                        <!-- 用户基本信息 -->
-                                                        <div class="eleven wide column">
-                                                            <div class="ui mini horizontal link list">
-                                                                <div class="item">
-                                                                    <img src="../static/image/1.png" alt="" class="ui avatar image">
-                                                                    <div class="content">
-                                                                            <a href="#"><div class="header">杨瑞卿</div></a>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                <div class="item">
-                                                                    <i class="calendar icon"></i> 2020-3-21 
-                                                                </div>
-                                                                <div class="item">
-                                                                        <i class="eye icon"></i> 5223 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- 标签label -->
-                                                        <div class="right aligned five wide column">
-                                                            <a href="#" target="_blank" class="ui basic teal label me-padded-mini">认知升级</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- 文章图片 最好是800width 400height -->
-                                                <div class="five wide column">
-                                                        <a href="" target="_blank">
-                                                                <img width="200" height="100" src="https://i.picsum.photos/id/961/300/200.jpg" alt="" class="ui rounded bordered fluid"
-                                                                style="max-width: 100%; height: auto">
-                                                        </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                            </div>
-                            
 
-                            <!-- footer -->
-                            <div class="ui bottom attached segment">
-                                <div class="ui two column grid middle aligned">
-                                    <div class="column">
-                                        <a href="" class="ui button teal basic">上一页</a>
+                                        </div>
                                     </div>
-                                    <div class="right aligned column ">
-                                        <a href="" class="ui button teal basic">下一页</a>
+                                </div>
+
+                                <!-- footer -->
+                                <div class="ui bottom attached segment" th:if="${page.pages>1}">
+                                    <div class="ui two column grid middle aligned"  >
+                                        <div class="column">
+                                            <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}-1" class="ui teal button" th:if="${page.hasPrevious()}">上一页</a>
+                                        </div>
+                                        <div class="right aligned column ">
+                                            <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}+1" class="ui teal button" th:if="${page.hasNext()}">下一页</a>
+                                        </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                            
-                        </div>
                         <!-- 右边的top 榜单 -->
                         <div class="five wide column">
                             <!-- 分类 -->
@@ -220,31 +103,18 @@
                                                 </div>
                                                 <div class="right aligned column">
                                                     <!-- target属性表示再打开一个网页 -->
-                                                    <a href="#" target="_blank">more <i class="angle double right icon"></i></a>
+                                                    <a href="#"  th:href="@{/types/-1}">more <i class="angle double right icon"></i></a>
                                                 </div>
                                             </div>
                                 </div>
-                                <div class="ui segment">
+                                <div class="ui segment" >
                                     <div class="ui fluid vertical menu">
-                                        <a href="#" class="item">
-                                            学习日志
-                                            <div class="ui teal basic left pointing label">13</div>
-                                        </a>
-                                    <a href="#" class="item">
-                                            学习日志
-                                            <div class="ui teal basic left pointing label">13</div>
-                                        </a>
-                                    <a href="#" class="item">
-                                            学习日志
-                                            <div class="ui teal basic left pointing label">13</div>
-                                        </a>
-                                    <a href="#" class="item">
-                                            学习日志
-                                            <div class="ui teal basic left pointing label">13</div>
+                                        <a href="#"  th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}" >
+                                            <span th:text="${type.name}">方法论</span>
+                                            <div class="ui teal basic left pointing label" th:text="${type.blogSize}">13</div>
                                         </a>
                                     </div>
                                 </div>
-                              
                             </div>
                             <!-- 标签 -->
                             <div class="ui segments me-marrgin-top-large">
@@ -255,40 +125,24 @@
                                                     </div>
                                                     <div class="right aligned column">
                                                         <!-- target属性表示再打开一个网页 -->
-                                                        <a href="#" target="_blank">more <i class="angle double right icon"></i></a>
+                                                        <a href="#" th:href="@{/tags/-1}" >more <i class="angle double right icon"></i></a>
                                                     </div>
                                                 </div>
                                     </div>
-                                    <div class="ui segment">
-                                        <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                            <div class="detail">13</div>
+                                    <div class="ui segment" >
+                                        <a href="#"   th:href="@{/tags/{id}(id=${tag.id})}"  th:each="tag : ${tags}"  class="ui teal basic left pointing label me-marrgin-tb-tiny">
+                                            <span th:text="${tag.name}">方法论</span>
+                                            <div class="detail" th:text="${tag.blogSize}">23</div>
                                         </a>
-                                        <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                                <div class="detail">13</div>
-                                            </a>
-                                            <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                                    <div class="detail">13</div>
-                                                </a>
-                                                <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                                        <div class="detail">13</div>
-                                                    </a>
-                                                    <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                                            <div class="detail">13</div>
-                                                        </a>
-                                                        <a href="#" class="ui teal basic left pointing label me-marrgin-tb-tiny">数据结构与算法
-                                                                <div class="detail">13</div>
-                                                            </a>
-
                                     </div>
-                                  
                                 </div>
                             <!-- 最新推荐 -->
                             <div class="ui segments me-marrgin-top-large">
                                     <div class="ui secondary segment">
                                         <i class="bookmark icon"></i> 最新推荐
                                     </div>
-                                    <div class="ui segment">
-                                        <a href="" target="_blank" class=""> 搭建Springboot博客</a>
+                                    <div class="ui segment" th:each="blog : ${blogs}">
+                                        <a href="" th:href="@{/blog/{id}(id=${blog.id})}" class="" th:text="${blog.title}"> 搭建Springboot博客</a>
                                     </div>
                                   
                                 </div>
@@ -309,7 +163,7 @@
                 <button class="ui wechat icon button"><i class="weixin icon"></i></button>
                 <button class="ui qq icon button"><i class="qq icon"></i></button>
                 <button class="ui icon button"><i class="weibo icon"></i></button>
-                <button class="ui icon button"><i class="github icon"></i></button>
+                <button onclick="location.href='https://github.com/1193700079/blog_yrq'" class="ui icon button"><i class="github icon"></i></button>
                 <div  id="toTop-button" class="ui  icon button">
                     <i class="chevron up icon"></i>
                 </div>
@@ -317,7 +171,6 @@
         </div>
 
         <div id="qrcode_wechat"  class="ui wechat_qr popup flowing transition hidden" style="width: 130px;">
-            <!-- <img src="./image/wechat.png" alt="" class="ui rounded image" style="width: 100px;"> -->
         </div>
 
         <div class="ui qq_qr popup flowing transition hidden" style="width: 130px;">
@@ -325,63 +178,32 @@
         </div>
 
         <!-- 底部栏 -->
-        <footer class="ui inverted vertical segment me-padded-tb-massive">
-            <div class="ui center aligned container">
-                <div class="ui inverted divided stackable grid">
-                    <div class="three wide column">
-                            <div class="ui inverted link list">
-                                <div class="item">
-                                    <img src="../static/image/wechat.png" alt=""
-                                         class="ui rounded image" style="width: 110px">
-                                </div>
-                            </div>
-                    </div>
-                    <div class="three wide column">
-                        <h4 class="ui inverted header">最新博客</h4>
-                        <div class="ui inverted link list">
-                            <a href="#" class="item">算法竞赛进阶指南 </a>
-                            <a href="#" class="item">分布式协调系统 zookeeper</a>
-                            <a href="#" class="item">消息队列 kafka</a>
-                        </div>
-                    </div>
-                    <div class="three wide column">
-                            <h4 class="ui inverted header">联系方式</h4>
-                            <div class="ui inverted link list">
-                                <a href="#" class="item">Email:yrq991121@163.com</a>
-                                <a href="#" class="item">QQ:1193700079</a>
-                                <a href="#" class="item">Github</a>
-                            </div>
-                    </div>
-                    <div class="seven wide column">
-                            <h4 class="ui inverted header">网站简介</h4>
-                            <p>我的个人技术博客，练习一下Springboot，对于后端技术主要是操作系统和数据库这一块的理论知识，做网页纯属技术爱好，前端技术主要是UI设计，用户交互，要具备优秀的艺术欣赏水平，偶尔接私活，需要的微信扫码加我联系</p>
-                    </div>
-                </div>
-                <div class="ui inverted section divider">
-                </div>
-                <p class="m-text-lined m-text-spaced m-text-thin m-opacity-mini">Copyright @ 2020 - 2021 Blog_Daniel Designed by yrq
-                    <br>
-                    来自华北理工大学的技术宅
-                </p>
-            </div>
+        <footer th:replace="fragments::footer"></footer>
 
-            
-        </footer>
+        <!-- 引入js脚本 -->
+        <!--/*/<th:block th:replace="fragments :: script">/*/-->
+        <!--/*/</th:block>/*/-->
 
-
-        <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-        <!--看板娘 -->
-        <script src="https://cdn.jsdelivr.net/gh/1193700079/live2d-widget@latest/autoload.js"></script>
 <!--          自动生成二维码插件-->
-        <script src="../static/plugin/qrcode/qrcode.js"></script>
+        <script th:src="@{/plugin/qrcode.js}"></script>
 <!--        滚动监测-->
-        <script src="../static/plugin/waypoints/jquery.waypoints.js"></script>
+        <script th:src="@{/plugin/waypoints/jquery.waypoints.js}"></script>
         <!--平滑滚动 -->
         <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
 
 
         <script>
+            function page(obj) {
+                $("[name='page']").val($(obj).data("page"));
+                loaddata();
+            }
+
+            function loaddata() {
+                $("#table-container").load("/",{
+                    title : $("[name='title']").val(),
+                    page : $("[name='page']").val()
+                });
+            };
 
             var waypoint = new Waypoint({
                 element: document.getElementById('waypoint'),
@@ -419,27 +241,13 @@
                 position: "left center"
             });
 
-            //生成目录
-            tocbot.init({
-                // Where to render the table of contents.
-                tocSelector: '.js-toc',
-                // Where to grab the headings to build the table of contents.
-                contentSelector: '.js-toc-content',
-                // Which headings to grab inside of the contentSelector element.
-                headingSelector: 'h1, h2, h3',
-                // For headings inside relative or absolute positioned containers within content.
-            });
-
+            // 手机端点击显示导航栏
+            // $('.menu.toggle').on('click',function(){
+            //     $(".me-item").toggleClass("me-mobile-hide");
+            // });
             // 手机端点击显示导航栏
             $(".menu.toggle").click(function () {
                 $(".me-item").toggleClass("me-mobile-hide");
-            });
-
-            // 打赏按钮
-            $("#payButton").popup({
-                popup: $(".payQR.popup"),
-                on: 'click',
-                position: "bottom center"
             });
 
             // 目录按钮
@@ -448,136 +256,6 @@
                 on: 'click',
                 position: "left center"
             });
-        </script>
-
-        <!-- 鼠标移动效果 -->
-        <script>
-            ! function () {
-
-                function n(n, e, t) {
-
-                    return n.getAttribute(e) || t
-
-                }
-
-                function e(n) {
-
-                    return document.getElementsByTagName(n)
-
-                }
-
-                function t() {
-
-                    var t = e("script"),
-                        o = t.length,
-                        i = t[o - 1];
-
-                    return {
-
-                        l: o,
-                        z: n(i, "zIndex", -1),
-                        o: n(i, "opacity", .5),
-                        c: n(i, "color", "0,0,0"),
-                        n: n(i, "count", 99)
-
-                    }
-
-                }
-
-                function o() {
-
-                    a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-
-                        c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body
-                            .clientHeight
-
-                }
-
-                function i() {
-
-                    r.clearRect(0, 0, a, c);
-
-                    var n, e, t, o, m, l;
-
-                    s.forEach(function (i, x) {
-
-                        for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y <
-                        0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[
-                            e],
-
-                        null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y,
-
-                            l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i
-                            .y -= .03 * m),
-
-                            t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle =
-                            "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r
-                            .stroke()))
-
-                    }),
-
-                        x(i)
-
-                }
-
-                var a, c, u, m = document.createElement("canvas"),
-
-                    d = t(),
-                    l = "c_n" + d.l,
-                    r = m.getContext("2d"),
-                    x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window
-                            .mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-
-                        function (n) {
-
-                            window.setTimeout(n, 1e3 / 45)
-
-                        },
-
-                    w = Math.random,
-                    y = {
-                        x: null,
-                        y: null,
-                        max: 2e4
-                    };
-                m.id = l, m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o, e("body")[0]
-                    .appendChild(m), o(), window.onresize = o,
-
-                    window.onmousemove = function (n) {
-
-                        n = n || window.event, y.x = n.clientX, y.y = n.clientY
-
-                    },
-
-                    window.onmouseout = function () {
-
-                        y.x = null, y.y = null
-
-                    };
-
-                for (var s = [], f = 0; d.n > f; f++) {
-
-                    var h = w() * a,
-                        g = w() * c,
-                        v = 2 * w() - 1,
-                        p = 2 * w() - 1;
-                    s.push({
-                        x: h,
-                        y: g,
-                        xa: v,
-                        ya: p,
-                        max: 6e3
-                    })
-
-                }
-
-                u = s.concat([y]),
-
-                    setTimeout(function () {
-                        i()
-                    }, 100)
-
-            }();
         </script>
 
 

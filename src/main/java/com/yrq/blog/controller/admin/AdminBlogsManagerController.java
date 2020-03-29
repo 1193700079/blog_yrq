@@ -42,7 +42,7 @@ public class AdminBlogsManagerController {
                        BlogSearchVO blog){
         blog.setPage(page);
         model.addAttribute("types",typeService.listType());
-        model.addAttribute("page", blogService.SearchListBlog(blog));
+        model.addAttribute("page", blogService.SearchListBlog(blog,""));
         return LIST;
     }
 
@@ -71,7 +71,7 @@ public class AdminBlogsManagerController {
                          BlogSearchVO blog){
         blog.setPage(page);
         System.out.println(blog);
-        model.addAttribute("page", blogService.SearchListBlog(blog));
+        model.addAttribute("page", blogService.SearchListBlog(blog,""));
         return "/admin/blogs :: blogList";
     }
 

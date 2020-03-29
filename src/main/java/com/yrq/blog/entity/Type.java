@@ -1,9 +1,6 @@
 package com.yrq.blog.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +26,9 @@ public class Type {
 
     @TableLogic
     private Integer deleted;
+
+    //每次插入发布的一个blog 则++
+    private Integer blogSize;
 
     private Date createTime;
     private Date updateTime;

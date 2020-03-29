@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -126,31 +126,43 @@
 
 
 										<div class="tab-content-inner" data-content="signup">
-											<form id="registerForm" action="#" method="post" th:action="@{/register}">
+											<form id="registerForm" action="#" method="post" th:action="@{/register}" onsubmit="return checkData()">
 												<div class="row form-group">
 													<div class="col-md-12">
-														<input placeholder="Username" type="text" class="form-control" name="username">
+														<input placeholder="Username" type="text" class="form-control"
+															   name="username" required onfocus="usnrule()" onblur="checkUserName(this.value)">
+														<span id="usernameErr"></span>
 													</div>
 												</div>
 												<div class="row form-group">
 													<div class="col-md-12">
-														<input placeholder="Email" type="email" class="form-control" name="email">
+														<input placeholder="Email" type="email" class="form-control" name="email" required>
 													</div>
 												</div>
 												<div class="row form-group">
 													<div class="col-md-12">
-														<input placeholder="Password" type="password" class="form-control" name="password">
+														<input placeholder="Nickname" type="text" class="form-control" name="nickname" required>
 													</div>
 												</div>
 												<div class="row form-group">
 													<div class="col-md-12">
-														<input placeholder="Password Repeat" type="password" class="form-control" name="password2">
+														<input placeholder="Password" type="password" class="form-control"
+															   name="password" id="password" maxlength="20" required onfocus="pwrule()" onblur="checkPassWord(this.value)">
+														<span id="passwordErr"></span>
+													</div>
+												</div>
+												<div class="row form-group">
+													<div class="col-md-12">
+														<input placeholder="Password Repeat" type="password" class="form-control"
+															   name="password2"id="password2" maxlength="20" required onfocus="repwrule()" onblur="checkRePW(this.value)">
+														<span id="repasswordErr"></span>
 													</div>
 												</div>
 
 												<div class="row form-group">
 													<div class="col-md-12">
-														<button type="submit" class="btn btn-primary" >赶紧注册哟！</button>
+														<button type="submit" class="btn btn-primary" >点击注册</button>
+														<button type="reset" class="btn btn-primary" >重新输入</button>
 													</div>
 												</div>
 											</form>	
@@ -167,9 +179,7 @@
 			</div>
 		</div>
 	</header>
-	
 
-	
 	<!-- jQuery -->
 	<script src="../static/login/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -187,52 +197,26 @@
 	<script src="../static/login/js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="../static/login/js/main.js"></script>
+	<script src="../static/login/js/checkData.js"></script>
 
-<!--		<script>-->
-<!--			$('#loginForm').form({-->
-<!--				fields : {-->
-<!--					username : {-->
-<!--						identifier: 'username',-->
-<!--						rules: [{-->
-<!--							type : 'empty',-->
-<!--							prompt: '用户名：请输入用户名'-->
-<!--						}]-->
-<!--					},-->
-<!--					password : {-->
-<!--						identifier: 'password',-->
-<!--						rules: [{-->
-<!--							type : 'empty',-->
-<!--							prompt: '密码：请输入密码'-->
-<!--						}]-->
-<!--					},-->
-<!--				}-->
-<!--			});-->
-<!--			$('#registerForm').form({-->
-<!--				fields : {-->
-<!--					username : {-->
-<!--						identifier: 'username',-->
-<!--						rules: [{-->
-<!--							type : 'empty',-->
-<!--							prompt: '用户名：请输入用户名'-->
-<!--						}]-->
-<!--					},-->
-<!--					password : {-->
-<!--						identifier: 'password',-->
-<!--						rules: [{-->
-<!--							type : 'empty',-->
-<!--							prompt: '密码：请输入密码'-->
-<!--						}]-->
-<!--					},-->
-<!--					password2 : {-->
-<!--						identifier: 'password2',-->
-<!--						rules: [{-->
-<!--							type : 'empty',-->
-<!--							prompt: '重复密码：请输入重复密码'-->
-<!--						}]-->
-<!--					},-->
-<!--				}-->
-<!--			});-->
-<!--		</script>-->
+	<script>
+		function validate() {
+			var pwd1 = document.getElementById("password").value;
+			var pwd2 = document.getElementById("password2").value;
+			<!-- 对比两次输入的密码 -->
+			if(pwd1 == pwd2) {
+				document.getElementById("tishi").innerHTML="<l color='green'>两次密码相同</l>";
+				document.getElementById("submit").disabled = false;
+			}
+			else {
+				document.getElementById("tishi").innerHTML="<l color='red'>两次密码不相同</l>";
+				document.getElementById("submit").disabled = true;
+			}
+		}
+		function reset() {
+			document.getElementById("submit").disabled = false;
+		}
+	</script>
 	</body>
 </html>
 

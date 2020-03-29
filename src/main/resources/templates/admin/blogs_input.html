@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <Title>博客发布</Title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <link rel="stylesheet" href="../../static/plugin/editmd/css/editormd.min.css" th:href="@{/plugin/editmd//css/editormd.min.css}">
+    <link rel="stylesheet" href="../../static/plugin/editmd/css/editormd.min.css" th:href="@{/plugin/editmd/css/editormd.min.css}">
     <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
 
 </head>
@@ -55,7 +55,7 @@
 
     <!-- 中间内容 -->
     <div class="me-padded-tb-large">
-        <!-- container可以自动响应布局 -->
+        <!--   SemanticUI 的container属性可以自动响应布局 -->
         <div class="ui container">
             <form id="blog-form"  action="#" th:object="${blog}" th:action="@{/admin/blogs}" method="post" class="ui form">
                 <input type="hidden" name="published" th:value="*{published}">
@@ -86,7 +86,6 @@
                         
                         </textarea>
                     </div>
-                    
                 </div>
 
                 <!-- 图片地址框 -->
@@ -98,10 +97,12 @@
           
                   </div>
 
+                <!-- 文章描述框 -->
                 <div class="required field">
                     <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="200"></textarea>
                 </div>
 
+                <!-- 分类和标签 -->
                 <div class="two fields">
                     <div class="required field">
                         <div class="ui left labeled input">
@@ -116,7 +117,7 @@
                             </div>
                         </div> 
                     </div>
-                    <div class="field">
+                    <div class="required field">
                         <div class="ui left labeled input">
                             <label class="ui compact teal basic label">标签</label>
                             <div class="ui selection multiple search fluid dropdown ">
@@ -129,8 +130,9 @@
                             </div>
                         </div> 
                     </div>
-                </div> 
-                
+                </div>
+
+                <!-- 推荐 赞赏 评论开启框 -->
                 <div class="inline fields" >
                     <div class="field">
                       <div class="ui checkbox">
@@ -158,21 +160,17 @@
                     </div>
                   </div>
 
-                  <div class="ui error message"></div>
+                <!-- 错误显示框 -->
+                <div class="ui error message"></div>
 
-                  <div class="ui right aligned container">
+                <!-- 提交框 -->
+                <div class="ui right aligned container">
                     <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
                     <button type="button" id="save-btn" class="ui secondary button">保存</button>
                     <button type="button" id="publish-btn" class="ui teal button">发布</button>
-                  </div>
+                </div>
             </form>
-
-           
-      
-
-    
         </div>
-
     </div>
 
     <!-- 底部栏 -->
@@ -220,14 +218,12 @@
 
     </footer>
 
-
-
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
     <script type="text/javascript" src="../../static/plugin/editmd/editormd.min.js"  th:src="@{/plugin/editmd/editormd.min.js}"></script>
 
     <script>
+        //初始化markdown编辑器
        var myEditor;
 
         $(function() {
@@ -235,33 +231,37 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                // path    : "../plugin/editmd/lib/"
                 path    : "/plugin/editmd/lib/"
             });
         });
 
+        //手机端菜单栏显示
         $('.menu.toggle').click(function () {
             $('.me-item').toggleClass('me-mobile-hide');
         });
 
+        //头像下拉框
         $('.ui.user.dropdown').dropdown({
             on: 'hover'
         });
+
         $('.ui.dropdown').dropdown({
             on: 'hover'
         });
 
+        //保存按钮
        $('#save-btn').click(function () {
            $('[name="published"]').val(false);
            $('#blog-form').submit();
        });
 
-
+        //发布按钮
        $('#publish-btn').click(function () {
            $('[name="published"]').val(true);
            $('#blog-form').submit();
        });
 
+       //js验证表单
        $('.ui.form').form({
            fields : {
                title : {
@@ -278,11 +278,18 @@
                        prompt: '标题：请输入博客内容'
                    }]
                },
-               typeId : {
-                   identifier: 'type.id',
+               typeName : {
+                   identifier: 'typeName',
                    rules: [{
                        type : 'empty',
                        prompt: '标题：请输入博客分类'
+                   }]
+               },
+               tagIds : {
+                   identifier: 'tagIds',
+                   rules: [{
+                       type : 'empty',
+                       prompt: '标题：请输入博客标签'
                    }]
                },
                firstPicture : {

@@ -3,6 +3,9 @@ package com.yrq.blog.service.iservice;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yrq.blog.entity.Blog;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @program: blog_yrq
  * @description:
@@ -36,4 +39,10 @@ public interface IBlogService  {
 
     //删除
     void deleteBlog(Long id);
+
+    //得到前8个最新的博客
+    List<Blog> findTop();
+
+
+    Map<String,List<Blog>> archiveBlog();
 }
