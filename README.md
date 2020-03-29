@@ -1,9 +1,15 @@
 # hello !!
-spring boot 2.2.5+ mybatis plus 3.3.1.tmp+ thymeleaf 全栈博客
-+ Shiro安全验证框架(使用md5盐值加密)
+    spring boot 2.2.5+ mybatis plus 3.3.1.tmp+ thymeleaf 全栈博客
+    + Shiro安全验证框架(使用md5盐值加密)+sematic UI+看板娘+Jquery
 
-项目已经部署了可以访问
-www.yrqblog.top
+    项目已经部署了可以访问
+    www.yrqblog.top
+
+# 2020.3.29更新
+    网站正式上线
+
+
+# 网站技术内容
 
 使用了阿里云的t5服务器
 服务器为 Linux的Centos版本   
@@ -23,6 +29,8 @@ mysql 版本 8.0.17
 
 代码管理
 使用git+sourceTree
+
+
 
 用户分为三种
 认证（采用md5盐值加密）和授权 
