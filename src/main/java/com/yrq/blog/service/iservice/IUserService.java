@@ -1,5 +1,6 @@
 package com.yrq.blog.service.iservice;
 
+import com.yrq.blog.entity.Blog;
 import com.yrq.blog.entity.User;
 
 /**
@@ -10,5 +11,7 @@ import com.yrq.blog.entity.User;
  **/
 public interface IUserService {
     User checkUser(String username, String password);
-    void save(User user);
+    Boolean save(User user);
+
+    User findUserByBlog(Blog blog);
 }

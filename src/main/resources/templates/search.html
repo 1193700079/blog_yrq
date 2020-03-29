@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head(~{::title})">
+        <Title>搜索结果</Title>
+    </head>
+<body>
+
+<!-- 导航 -->
+<nav th:replace="fragments::menu(-1)"></nav>
+
+<!--中间内容-->
+<div  class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <!-- header -->
+        <div class="ui top attached segment">
+
+            <div class="ui two column grid middle aligned">
+                <div class="column">
+                    <h3 class="ui header teal">搜索结果</h3>
+                </div>
+                <div class="right aligned column">
+                    共 <h3 class="ui header orange
+                                           me-inline-block" th:text="${counts}">14</h3> 篇
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="ui top attached teal segment">
+            <div class="ui padded vertical segment m-padded-tb-large" th:each="blog,iterStat : ${page.getRecords()}">
+                <div class="ui middle aligned mobile reversed stackable grid" >
+                    <div class="eleven wide column">
+                        <h3 class="ui header" ><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" STYLE="color: black" th:text="${blog.title}">你真的理解什么是财富自由吗?</a></h3>
+                        <p class="m-text" th:text="|${blog.description}......|">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是大家都那么做而已…...</p>
+                        <div class="ui grid">
+                            <div class="eleven wide column">
+                                <div class="ui mini horizontal link list">
+                                    <div class="item">
+                                        <img src="../static/image/1.png" alt="" class="ui avatar image">
+                                        <div class="content">
+                                            <a href="#"><div class="header">杨瑞卿</div></a>
+                                        </div>
+                                    </div>
+                                    <div class="item" >
+                                        <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2020-3-26</span>
+                                    </div>
+                                    <div class="item" >
+                                        <i class="eye icon"></i> <span th:text="${blog.views}">9999</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right aligned five wide column" >
+                                <a href="#"  target="_blank" class="ui basic teal label me-padded-mini" th:each=" tag:${blog.tags}">
+                                    <span th:text="${tag.name}">方法论</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="five wide column">
+                        <a href="" target="_blank">
+                            <img width="200" height="100" src="https://i.picsum.photos/id/961/300/200.jpg" alt="" class="ui rounded bordered fluid"
+                                 th:src="@{${blog.firstPicture}}" style="max-width: 100%; height: auto">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="ui bottom attached segment" th:if="${page.pages>1}">
+            <div class="ui two column grid middle aligned"  >
+                <div class="column">
+                    <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}-1" class="ui teal button" th:if="${page.hasPrevious()}">上一页</a>
+                </div>
+                <div class="right aligned column ">
+                    <a onclick="page(this)" th:attr="data-page=${page.getCurrent()}+1" class="ui teal button" th:if="${page.hasNext()}">下一页</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br>
+<br>
+<!--底部footer-->
+
+<footer th:replace="fragments::footer"></footer>
+
+<!-- 引入js脚本 -->
+<!--/*/<th:block th:replace="fragments :: script">/*/-->
+<!--/*/</th:block>/*/-->
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+/* 设置根标签就是html为满屏 */
+			:root{
+				height: 100%;
+			}
+			/* 设置body为100% 并设置视觉穿透，观察原点 ， 过渡效果为3d */
+			body{
+				height: 100%;
+				margin: 0;
+				perspective: 8000px;
+				perspective-origin: 600px 600px;
+				transform-style: preserve-3d;
+			}
+			/* 为box设置屏幕居中 并添加一个自转的动画效果 */
+			.box{
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				top: calc(50% - 200px);
+				left: calc(50% - 200px);
+				transform-style: preserve-3d;
+				animation: rotate 8s linear infinite ;
+			}
+			/* 为每一张照片设置大小以及透明度 ， 这样看上去会有透视的感觉 */
+			.box div{
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				opacity: .9;
+				background-size: cover;
+				background-position: center;
+			}
+			/* 定义自转动画从0到360°自转 */
+			@keyframes rotate {
+				from {
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+				to {
+					transform: rotateX(360deg) rotateY(360deg);
+				}
+			}
+			/* 下面的六张图片单独说 */
+			.photo1{
+				background-image: url('1.jpg');
+				transform:translateZ(200px);
+				
+			}
+			.photo2{
+				background-image: url('2.jpg');
+				transform:translateZ(-200px);
+			}
+			.photo3{
+				background-image: url('3.jpg');
+				transform:rotateY(90deg) translateZ(200px);
+			}
+			.photo4{
+				background-image: url('4.jpg');
+				transform: rotateY(-90deg) translateZ(200px);
+			}
+			.photo5{
+				background-image: url('5.jpg');
+				transform:rotateX(90deg) translateZ(200px);
+			}
+			.photo6{
+				background-image: url('6.jpg');
+				transform: rotateX(-90deg) translateZ(200px);
+			}

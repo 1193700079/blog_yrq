@@ -9,18 +9,20 @@ package com.yrq.blog;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yrq.blog.entity.Blog;
+import com.yrq.blog.mapper.BlogMapper;
 import com.yrq.blog.mapper.UserMapper;
 import com.yrq.blog.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -31,6 +33,8 @@ public class SimpleTest {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private BlogMapper blogMapper;
     //查询
     @Test
     public void testSelect() {
@@ -80,7 +84,22 @@ public class SimpleTest {
     }
 
     @Test
-    public void page(){
+        public void page(){
+            Page<Blog> page = new Page<Blog>(2,2) ;// 第当前页显示size个数据
+            QueryWrapper<Blog> wrapper = new QueryWrapper<>();
+            IPage<Blog> iPage = blogMapper.selectPage(page,wrapper);
+            System.out.println("数据总条数: "+iPage.getTotal() );
+            System.out.println("数据总页数: "+iPage.getPages());
+            System.out.println("当前页数: "+iPage.getCurrent());
+
+            List<Blog> records  = iPage.getRecords();
+            for (Blog record: records) {
+                System.out.println(record);
+            }
+    }
+
+    @Test
+    public void page2(){
         Page<User> page = new Page<User>(2,2) ;// 第当前页显示size个数据
         QueryWrapper<User> wrapper = new QueryWrapper<>();
 //        wrapper.like("")
@@ -95,6 +114,15 @@ public class SimpleTest {
         }
     }
 
+//    @Test
+//    public void saveBlog(){
+//        Blog blog = new Blog();
+//        blog.setCreateTime(new Date());
+//        blog.setUpdateTime(new Date());
+//        blog.setViews(0);
+//
+//        return blogMapper.insert(blog);
+//    }
 
 
 }

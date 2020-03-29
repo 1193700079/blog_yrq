@@ -70,6 +70,7 @@
                     <tr>
                         <th></th>
                         <th>分类</th>
+                        <th>使用博客数量</th>
                         <th>创建时间</th>
                         <th>更新时间</th>
                         <th>操作</th>
@@ -79,6 +80,7 @@
                     <tr th:each="type,iterStat : ${page.getRecords()}">
                         <td th:text="${iterStat.count}">1</td>
                         <td th:text="${type.name}">刻意练习清单</td>
+                        <td th:text="${type.blogSize}">刻意练习清单</td>
                         <td th:text="${#dates.format(type.createTime, 'yyyy-MM-dd HH:mm:ss')}">刻意练习清单</td>
                         <td th:text="${#dates.format(type.updateTime, 'yyyy-MM-dd HH:mm:ss')}">刻意练习清单</td>
                         <td>

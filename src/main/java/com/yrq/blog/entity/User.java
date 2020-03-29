@@ -29,13 +29,17 @@ public class User {
     private String nickname;
     private String username;
 
-    @TableField(select = false)   //查询时不显示这个值
+//    @TableField(select = false)   //查询时不显示这个值
     private String password;
 
     private String email;
     private String avatar;
     private Integer type;
 
+    //权限
+    private String perms;
+    //盐值
+    private String salt;
 
     private Date createTime;
     private Date updateTime;
