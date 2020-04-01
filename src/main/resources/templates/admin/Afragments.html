@@ -12,18 +12,21 @@
 <body>
 
 <!--导航-->
-<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+<nav th:fragment="menu(n)" class="ui inverted attached segment me-padded-tb-mini">
     <div class="ui container">
-        <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">管理后台</h2>
-            <a href="#" th:href="@{/admin/blogs}" class=" m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
-            <a href="#" th:href="@{/admin/types}" class=" m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
-            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
-            <div class="right m-item m-mobile-hide menu">
-                <div class="ui dropdown  item">
+        <div class="ui inverted secondary menu stackable">
+            <h2 class="ui teal header item">后台管理</h2>
+            <a href="#" th:href="@{/admin/blogs}" class=" ui browse me-item item me-mobile-hide" th:classappend="${n==1} ? 'active'">
+                <i class="home icon"></i>
+                博客
+            </a>
+            <a href="#" th:href="@{/admin/types}" class=" me-item item me-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tags}" class=" me-item item me-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>标签</a>
+            <div class="right menu me-item item me-mobile-hide">
+                <div class="ui user dropdown item">
                     <div class="text">
-                        <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005" th:src="@{${session.user.avatar}}">
-                        <span th:text="${session.user.nickname}">杨瑞卿</span>
+                        <img src="../../static/image/1.png" alt="" class="ui avatar image">
+                        杨瑞卿
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
@@ -32,8 +35,9 @@
                 </div>
             </div>
         </div>
+
     </div>
-    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+    <a href="#" class="ui menu toggle black button icon me-top-right me-mobile-show">
         <i class="sidebar icon"></i>
     </a>
 </nav>

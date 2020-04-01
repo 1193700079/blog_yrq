@@ -4,6 +4,7 @@ import com.yrq.blog.entity.Comment;
 import com.yrq.blog.mapper.CommentMapper;
 import com.yrq.blog.service.iservice.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author: yrq
  * @create: 2020-03-27 16:06
  **/
+@Service
 public class CommentService implements ICommentService {
 
     @Autowired

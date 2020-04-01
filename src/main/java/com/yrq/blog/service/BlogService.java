@@ -90,7 +90,7 @@ public class BlogService implements IBlogService {
         }
         blog.setUpdateTime(new Date());
         BeanUtils.copyProperties(blog,b); //将b的内容传给blog？？
-        if(b.isPublished()){
+        if(!b.isPublished()){
             Type type = typeService.updateType(blog.getTypeId(),"+");
             List<Tag> tags = tagService.updateTags(blog.getTagIds(),"+");
         }

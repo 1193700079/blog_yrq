@@ -64,7 +64,7 @@ public class AdminLoginController {
 //        token.setRememberMe(true);
         if(!user.getPerms().equals("admin"))   {
             System.out.println(pwd+"------------------2--------------sanjdnaskdas--------------");
-            return "redirect:login_admin";
+            return "redirect:/login_admin";
         }
         try {
             System.out.println(pwd+"-------------3------------------sanjdnaskdas--------------");
@@ -79,31 +79,18 @@ public class AdminLoginController {
             //用户名不存在
             model.addAttribute("msg","用户名不存在");
             System.out.println("用户名不存在！！！！！！！！！！！！！！！！！！！！！！！*********");
-            return "redirect:login_admin";
+            return "redirect:/login_admin";
         }catch (IncorrectCredentialsException ice){
             //密码不存在
             model.addAttribute("msg","密码错误");
             System.out.println("密码错误！！！！！！！！！！！！！！！！！！！！！！！*********");
-            return "redirect:login_admin";
+            return "redirect:/login_admin";
         }catch (Exception e){
 //            logger.info("登录失败，失败原因：[{}]", e.getMessage());
             e.printStackTrace();
-            return "redirect:login_admin";
+            return "redirect:/login_admin";
         }
 
-
-//        User user = userService.checkUser(username,password);
-//        if(user==null || user.getPerms() == "admin" ){
-//            attributes.addAttribute("message","用户名密码错误");
-//            return "redirect:login_admin";
-//        }else{
-//            user.setPassword(null);
-//            session.setAttribute("user",user);
-//            blog.setPage(page);
-//            model.addAttribute("types",typeService.listType());
-//            model.addAttribute("page", blogService.SearchListBlog(blog,""));
-//            return "admin/blogs";
-//        }
     }
 
     @GetMapping("/logout")

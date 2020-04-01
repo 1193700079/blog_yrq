@@ -64,16 +64,16 @@ public class LoginController {
                 //用户名不存在
             model.addAttribute("msg","用户名不存在");
             System.out.println("用户名不存在！！！！！！！！！！！！！！！！！！！！！！！*********");
-            return "redirect:login";
+            return "redirect:/login";
         }catch (IncorrectCredentialsException ice){
                 //密码不存在
             model.addAttribute("msg","密码错误");
             System.out.println("密码错误！！！！！！！！！！！！！！！！！！！！！！！*********");
-            return "redirect:login";
+            return "redirect:/login";
         }catch (Exception e){
             logger.info("登录失败，失败原因：[{}]", e.getMessage());
             e.printStackTrace();
-            return "redirect:login";
+            return "redirect:/login";
         }
     }
 

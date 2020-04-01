@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head(~{::title})">
+        <Title>留言板</Title>
+    </head>
+    <body >
+    <!-- 导航 -->
+    <nav th:replace="fragments::menu(6)"></nav>
+
+    <!-- 中间内容 -->
+
+    <div class="me-padded-tb-large m-container-small me-border-hidden">
+        <div class="ui container teal me-border-hidden">
+            <!-- header -->
+            <div class="ui top teal attached segment padded">
+                <div class="ui  column grid middle aligned">
+                    <div class="column">
+                        <h3 class="ui header teal">网站留言板~~期待你宝贵的建议~~  功能还没开发完</h3>
+                    </div>
+                </div>
+            </div>
+
+            <th:block>
+                <h3 class="ui center aligned header" >2020</h3>
+                <div class="ui fluid vertical menu">
+                      <span>
+                        <i class="mini teal circle icon"></i>杨瑞卿</span>
+                        <div class="ui teal basic left pointing label m-padded-mini " >9月03</div>
+                      </span>
+                      <div class="ui orange basic left pointing label m-padded-mini"> 原创</div>
+                </div>
+            </th:block>
+            <form class="ui fluid form segment">
+                <div class="two fields">
+                    <div class="field">
+                        <label>昵称</label>
+                        <input placeholder="昵称.." type="text">
+                    </div>
+                    <div class="field">
+                        <label>邮箱</label>
+                        <input placeholder="邮箱.." type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>留言信息</label>
+                    <textarea placeholder="留言信息.."></textarea>
+                </div>
+                <div class="teal ui right  aligned  submit button">提交</div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- 底部栏 -->
+    <footer th:replace="fragments::footer"></footer>
+
+    <!-- 引入js脚本 -->
+    <!--/*/<th:block th:replace="fragments :: script">/*/-->
+    <!--/*/</th:block>/*/-->
+
+    <script>
+     $(".PopInfo").popup({
+        popup : $(".InfoMe.popup"),
+         position: "left center"
+     });
+     $(".qq").popup({
+         position: "bottom center"
+     });
+     $(".wechat").popup({
+         popup : $(".wechat_qr.popup"),
+         position: "bottom center"
+     });
+     // 手机端点击显示导航栏
+     $('.menu.toggle').on('click',function(){
+         $(".me-item").toggleClass("me-mobile-hide");
+     });
+    </script>
+    </body>
+</html>

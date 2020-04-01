@@ -1,9 +1,10 @@
 spring:
   thymeleaf:
     mode: HTML
+    cache: false
   profiles:
-    active: dev
-  #  active: pro  #发布的环境
+#    active: dev
+    active: pro
 
 commment:
   avatar: /images/2.jpg

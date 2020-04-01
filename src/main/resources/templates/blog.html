@@ -9,9 +9,8 @@
 <!-- 导航 -->
     <nav th:replace="fragments::menu(-1)"></nav>
 
-
     <!-- 中间内容 -->
-    <div id="waypoint" class="me-padded-tb-large m-container-small animated fadeIn">
+    <div id="waypoint" class="me-padded-tb-large  animated fadeIn">
         <div class="ui container">
             <div class="ui top attached segment">
                 <div class="ui grid">
@@ -53,7 +52,7 @@
                 </div>
 
                 <h2 class="ui center aligned header" th:text="${blog.title}">生命里的遇见，都是命中注定</h2>
-                <div id="content" class="me-padded-lr-responsive me-padded-tb-large" th:utext="${blog.content}">
+                <div id="content" class="typo typo-selection js-toc-content me-padded-lr-responsive me-padded-tb-large" th:utext="${blog.content}">
                 </div>
 
                 <!-- 标签 -->
@@ -247,19 +246,11 @@
     <!-- 底部栏 -->
     <footer th:replace="fragments::footer"></footer>
 
-
-    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
-   
-    <script src="../static/plugin/prism/prism.js"></script>
-    <script src="../static/plugin/tocbot/tocbot.js"></script>
-    <script src="../static/plugin/qrcode/qrcode.js"></script>
-    <script src="../static/plugin/waypoints/jquery.waypoints.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/1193700079/live2d-widget@latest/autoload.js"></script>
+<!-- 引入js脚本 -->
+<!--/*/<th:block th:replace="fragments :: script">/*/-->
+<!--/*/</th:block>/*/-->
 
     <script>
-
         var waypoint = new Waypoint({
         element: document.getElementById('waypoint'),
         handler: function(direction) {

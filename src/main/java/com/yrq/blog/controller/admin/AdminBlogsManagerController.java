@@ -72,7 +72,7 @@ public class AdminBlogsManagerController {
         blog.setPage(page);
         System.out.println(blog);
         model.addAttribute("page", blogService.SearchListBlog(blog,""));
-        return "/admin/blogs :: blogList";
+        return "admin/blogs :: blogList";
     }
 
     //得到分类下拉框坏和标签下拉框中的数据 ！

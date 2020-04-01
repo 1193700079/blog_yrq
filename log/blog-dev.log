@@ -25245,3 +25245,47 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 2020-03-29 18:35:29.571 DEBUG 24212 --- [http-nio-8080-exec-7] c.y.b.m.BlogMapper.findTopRecommend      : <==      Total: 3
 2020-03-29 18:35:29.571  INFO 24212 --- [http-nio-8080-exec-7] com.yrq.blog.aspect.LogAspect            : ------doAfter------
 2020-03-29 18:35:29.571  INFO 24212 --- [http-nio-8080-exec-7] com.yrq.blog.aspect.LogAspect            : Result : {}index
+2020-03-29 18:43:41.485  INFO 24212 --- [http-nio-8080-exec-4] com.yrq.blog.aspect.LogAspect            : Request : {url='http://localhost:8080/types/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.yrq.blog.controller.TypesController.typesId', args=[-1, {}, 1]}
+2020-03-29 18:43:41.495 DEBUG 24212 --- [http-nio-8080-exec-4] c.y.blog.mapper.TypeMapper.getTotalType  : ==>  Preparing: select count(*) from type 
+2020-03-29 18:43:41.495 DEBUG 24212 --- [http-nio-8080-exec-4] c.y.blog.mapper.TypeMapper.getTotalType  : ==> Parameters: 
+2020-03-29 18:43:41.500 DEBUG 24212 --- [http-nio-8080-exec-4] c.y.blog.mapper.TypeMapper.getTotalType  : <==      Total: 1
+2020-03-29 18:43:41.504 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.BlogMapper.selectPage  : ==>  Preparing: SELECT COUNT(1) FROM blog WHERE (type_id = ? AND published = ?) 
+2020-03-29 18:43:41.504 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.BlogMapper.selectPage  : ==> Parameters: -1(Long), 1(Integer)
+2020-03-29 18:43:41.507 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.TypeMapper.selectPage  : ==>  Preparing: SELECT COUNT(1) FROM type WHERE deleted = 0 AND (id >= ?) 
+2020-03-29 18:43:41.508 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.TypeMapper.selectPage  : ==> Parameters: 1(Integer)
+2020-03-29 18:43:41.509 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.TypeMapper.selectPage  : ==>  Preparing: SELECT id,name,deleted,blog_size,create_time,update_time FROM type WHERE deleted=0 AND (id >= ?) ORDER BY blog_size DESC LIMIT ?,? 
+2020-03-29 18:43:41.509 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.TypeMapper.selectPage  : ==> Parameters: 1(Integer), 0(Long), 500(Long)
+2020-03-29 18:43:41.510 DEBUG 24212 --- [http-nio-8080-exec-4] c.yrq.blog.mapper.TypeMapper.selectPage  : <==      Total: 5
+2020-03-29 18:43:41.511  INFO 24212 --- [http-nio-8080-exec-4] com.yrq.blog.aspect.LogAspect            : ------doAfter------
+2020-03-29 18:43:41.511  INFO 24212 --- [http-nio-8080-exec-4] com.yrq.blog.aspect.LogAspect            : Result : {}types
+2020-03-29 18:43:42.646  INFO 24212 --- [http-nio-8080-exec-10] com.yrq.blog.aspect.LogAspect            : Request : {url='http://localhost:8080/tags/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.yrq.blog.controller.TagsController.typesId', args=[-1, {}, 1]}
+2020-03-29 18:43:42.653 DEBUG 24212 --- [http-nio-8080-exec-10] c.y.blog.mapper.TagMapper.findTotalTag   : ==>  Preparing: select count(*) from tag 
+2020-03-29 18:43:42.653 DEBUG 24212 --- [http-nio-8080-exec-10] c.y.blog.mapper.TagMapper.findTotalTag   : ==> Parameters: 
+2020-03-29 18:43:42.656 DEBUG 24212 --- [http-nio-8080-exec-10] c.y.blog.mapper.TagMapper.findTotalTag   : <==      Total: 1
+2020-03-29 18:43:42.661 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.BlogMapper.selectPage  : ==>  Preparing: SELECT COUNT(1) FROM blog WHERE (tag_ids LIKE ? AND published = ?) 
+2020-03-29 18:43:42.661 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.BlogMapper.selectPage  : ==> Parameters: %-1%(String), 1(Integer)
+2020-03-29 18:43:42.667 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.TagMapper.selectPage   : ==>  Preparing: SELECT COUNT(1) FROM tag WHERE deleted = 0 AND (id >= ?) 
+2020-03-29 18:43:42.668 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.TagMapper.selectPage   : ==> Parameters: 1(Integer)
+2020-03-29 18:43:42.669 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.TagMapper.selectPage   : ==>  Preparing: SELECT id,name,deleted,blog_size,create_time,update_time FROM tag WHERE deleted=0 AND (id >= ?) ORDER BY blog_size DESC LIMIT ?,? 
+2020-03-29 18:43:42.669 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.TagMapper.selectPage   : ==> Parameters: 1(Integer), 0(Long), 500(Long)
+2020-03-29 18:43:42.670 DEBUG 24212 --- [http-nio-8080-exec-10] c.yrq.blog.mapper.TagMapper.selectPage   : <==      Total: 8
+2020-03-29 18:43:42.670  INFO 24212 --- [http-nio-8080-exec-10] com.yrq.blog.aspect.LogAspect            : ------doAfter------
+2020-03-29 18:43:42.670  INFO 24212 --- [http-nio-8080-exec-10] com.yrq.blog.aspect.LogAspect            : Result : {}tags
+2020-03-29 18:43:44.529  INFO 24212 --- [http-nio-8080-exec-9] com.yrq.blog.aspect.LogAspect            : Request : {url='http://localhost:8080/archives', ip='0:0:0:0:0:0:0:1', classMethod='com.yrq.blog.controller.ArchivesController.Archives', args=[{}]}
+2020-03-29 18:43:44.533 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.b.mapper.BlogMapper.findTotalBlog    : ==>  Preparing: select count(*) from blog where deleted = 0 and published = 1 
+2020-03-29 18:43:44.533 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.b.mapper.BlogMapper.findTotalBlog    : ==> Parameters: 
+2020-03-29 18:43:44.535 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.b.mapper.BlogMapper.findTotalBlog    : <==      Total: 1
+2020-03-29 18:43:44.536 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.blog.mapper.BlogMapper.yearByGroup   : ==>  Preparing: select date_format(update_time,'%Y') from blog group by update_time order by update_time desc 
+2020-03-29 18:43:44.536 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.blog.mapper.BlogMapper.yearByGroup   : ==> Parameters: 
+2020-03-29 18:43:44.538 DEBUG 24212 --- [http-nio-8080-exec-9] c.y.blog.mapper.BlogMapper.yearByGroup   : <==      Total: 3
+2020-03-29 18:43:44.539 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==>  Preparing: select id,title,update_time,flag from blog where date_format(update_time,'%Y') = ? 
+2020-03-29 18:43:44.539 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==> Parameters: 2020(String)
+2020-03-29 18:43:44.540 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : <==      Total: 3
+2020-03-29 18:43:44.541 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==>  Preparing: select id,title,update_time,flag from blog where date_format(update_time,'%Y') = ? 
+2020-03-29 18:43:44.541 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==> Parameters: 2020(String)
+2020-03-29 18:43:44.542 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : <==      Total: 3
+2020-03-29 18:43:44.542 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==>  Preparing: select id,title,update_time,flag from blog where date_format(update_time,'%Y') = ? 
+2020-03-29 18:43:44.542 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : ==> Parameters: 2020(String)
+2020-03-29 18:43:44.544 DEBUG 24212 --- [http-nio-8080-exec-9] c.yrq.blog.mapper.BlogMapper.blogByYear  : <==      Total: 3
+2020-03-29 18:43:44.544  INFO 24212 --- [http-nio-8080-exec-9] com.yrq.blog.aspect.LogAspect            : ------doAfter------
+2020-03-29 18:43:44.544  INFO 24212 --- [http-nio-8080-exec-9] com.yrq.blog.aspect.LogAspect            : Result : {}archives

@@ -6,8 +6,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.5.RELEASE</version>
-<!--        <version>2.1.13.RELEASE</version>-->
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.yrq</groupId>
@@ -17,11 +15,10 @@
 
     <description>Demo project for Spring Boot</description>
 
-
-
     <properties>
         <java.version>1.8</java.version>
         <log4j.version>1.2.17</log4j.version>
+        <docker.image.prefix>yrq</docker.image.prefix>
     </properties>
 
     <repositories>
@@ -52,27 +49,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <!--devtools热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <scope>true</scope>
+            <scope>runtime</scope>
         </dependency>
 
         <!--log4j日志-->
@@ -181,7 +165,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <baseImage>java</baseImage>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <maintainer>yrq 1193700079@qq.com</maintainer>
+                    <workdir>/ROOT</workdir>
+                    <cmd>["java", "-version"]</cmd>
+                    <exposes>
+                        <expose>9090</expose>
+                    </exposes>
+                    <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+                    <!-- 这里是复制 jar 包到 docker 容器指定目录配置 -->
+                    <dockerHost>www.yrqblog.top:2375</dockerHost>
+                    <resources>
+                        <resource>
+                            <targetPath>/ROOT</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

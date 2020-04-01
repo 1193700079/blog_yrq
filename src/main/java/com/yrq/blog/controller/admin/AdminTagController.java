@@ -31,7 +31,7 @@ public class AdminTagController {
     public String tags(Model model,@RequestParam(value="page",required = false,defaultValue = "1") Integer page) {
 
         model.addAttribute("page", tagService.pageTag(page,10));
-        return "/admin/tags";
+        return "admin/tags";
     }
 
 

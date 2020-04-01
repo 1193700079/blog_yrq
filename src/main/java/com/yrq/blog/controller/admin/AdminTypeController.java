@@ -22,7 +22,6 @@ import java.util.Date;
  **/
 @Controller
 @RequestMapping("/admin")
-//@ResponseBody
 public class AdminTypeController {
     @Autowired
     TypeService typeService;
@@ -30,7 +29,7 @@ public class AdminTypeController {
     @GetMapping("/types")
     public String types(Model model,@RequestParam(value="page",required = false,defaultValue = "1") Integer page) {
         model.addAttribute("page",typeService.pageType(page,10));
-        return "/admin/types";
+        return "admin/types";
     }
 
     @GetMapping("/types/input")

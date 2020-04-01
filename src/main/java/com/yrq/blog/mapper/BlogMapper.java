@@ -26,7 +26,7 @@ public interface BlogMapper extends BaseMapper<Blog> {
     @Select("select date_format(update_time,'%Y') from blog group by update_time order by update_time desc")
     List<String> yearByGroup();
 
-    @Select("select id,title,update_time,flag from blog where date_format(update_time,'%Y') = #{s}")
+    @Select("select id,title,update_time,flag from blog where date_format(update_time,'%Y') = #{s} order by update_time desc")
     List<Blog> blogByYear(String s);
 
 

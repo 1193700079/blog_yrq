@@ -41,7 +41,7 @@ public class RegisterController {
             return "login";
         }else{
             attributes.addAttribute("msg","用户名已经存在");
-            return "redirect:login";  //重定向！！
+            return "redirect:/login";  //重定向！！
         }
     }
 }

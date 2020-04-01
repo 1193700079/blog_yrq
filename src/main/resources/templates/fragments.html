@@ -4,29 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:replace="${title}">输入你所要输入的标题即可</title>
-    <link rel="stylesheet"  th:href="@{/css/typo.css}">
-    <link rel="stylesheet"  th:href="@{/css/animate.css}">
-    <link rel="stylesheet"  th:href="@{/lib/prism/prism.css}">
-    <link rel="stylesheet"  th:href="@{/lib/tocbot/tocbot.css}">
-    <link rel="stylesheet"  th:href="@{/css/me.css}">
+    <link rel="icon" href="https://s1.ax1x.com/2020/03/30/Gusb1f.th.png" type="image/x-icon">
+    <link rel="stylesheet"  href="../static/css/typo.css" >
+    <link rel="stylesheet"  href="../static/css/animate.css">
+    <link rel="stylesheet"  href="../static/plugin/tocbot/tocbot.css">
+    <link rel="stylesheet"  href="../static/plugin/prism/prism.css"   >
+    <link rel="stylesheet"  href="../static/css/me.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <!-- 看板娘 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 
-    <style>
-        body{
-            /* background:url("../image/bg.png"); */
-            /* background:url("../image/bg5.jpg"); */
-            /* 图片适应窗口大小，这里设置的是不进行平铺 */
-            /* 图片相对于浏览器固定,这里设置背景图片固定，不随内容滚动 */
-            background: url("../static/image/background.jpg") no-repeat fixed;
-            /* 从边框区域显示 */
-            background-origin: border-box;
-            /* 指定图片大小，此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小 */
-            background-size:cover;
-        }
 
-    </style>
 </head>
 
 
@@ -40,6 +28,7 @@
             <a href="#" th:href="@{/tags/-1}" class=" me-item item me-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>标签</a>
             <a href="#" th:href="@{/archives}"class=" me-item item me-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i>归档</a>
             <a href="#" th:href="@{/about}"class=" me-item item me-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="info icon"></i>关于我</a>
+            <a href="#" th:href="@{/comment}"class=" me-item item me-mobile-hide" th:classappend="${n==6} ? 'active'"><i class="comments icon"></i>留言板</a>
             <div  class="right me-item  item me-mobile-hide">
                 <form name="search" action="#" th:action="@{/search}" method="post">
                     <div class="ui inverted transparent icon input">
@@ -133,14 +122,34 @@
     <script src="https://cdn.jsdelivr.net/gh/1193700079/live2d-widget@latest/autoload.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
-    <script src="../static/plugin/prism/prism.js"></script>
     <script src="../static/plugin/tocbot/tocbot.js"></script>
     <script src="../static/plugin/qrcode/qrcode.js"></script>
+    <script src="../static/plugin/prism/prism.js"></script>
     <script src="../static/plugin/waypoints/jquery.waypoints.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/1193700079/live2d-widget@latest/autoload.js"></script>
     <script>
         $('.ui.user.dropdown').dropdown({
             on: 'hover'
+        });
+        $(".menu.toggle").click(function () {
+            $(".me-item").toggleClass("me-mobile-hide");
+        });
+    </script>
+    <script>
+        $(".PopInfo").popup({
+            popup : $(".InfoMe.popup"),
+            position: "left center"
+        });
+        $(".qq").popup({
+            position: "bottom center"
+        });
+        $(".wechat").popup({
+            popup : $(".wechat_qr.popup"),
+            position: "bottom center"
+        });
+        // 手机端点击显示导航栏
+        $('.menu.toggle').on('click',function(){
+            $(".me-item").toggleClass("me-mobile-hide");
         });
     </script>
     <!-- 鼠标移动效果 -->
