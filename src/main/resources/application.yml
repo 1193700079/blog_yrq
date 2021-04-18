@@ -3,8 +3,8 @@ spring:
     mode: HTML
     cache: false
   profiles:
-#    active: dev
-    active: pro
+    active: dev
+#    active: pro
 
 commment:
   avatar: /images/2.jpg
