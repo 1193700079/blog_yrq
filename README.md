@@ -1,3 +1,10 @@
+# 20年做的项目 项目比较新  今年测试了依旧可以使用
+mysql 用的 8.0以上的版本
+如果你使用的是mysql5的话请记得切换
+
+如果感觉不错 请留下你的star吧
+开源不易感谢！
+
 # hello !!
     spring boot 2.2.5+ mybatis plus 3.3.1.tmp+ thymeleaf 全栈博客
     + Shiro安全验证框架(使用md5盐值加密)+sematic UI+看板娘+Jquery
@@ -42,3 +49,26 @@ guest  只能单纯浏览
 大项目一般都是
 三张表
 用户表 角色表 权限表
+
+
+前台登录
+http://localhost:8080
+yrq
+123456
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+
+后台登录
+http://localhost:8080/admin
+yrq
+123456
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
+
+
+
